@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ListGroup.css";
 
 interface Props {
   items: string[];
@@ -30,7 +31,6 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
             {item}
           </li>
         ))}
-        ;
       </ul>
     </>
   );
