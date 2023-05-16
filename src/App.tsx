@@ -1,16 +1,13 @@
-import Like from "./components/Like/Like";
-import { useState } from "react";
+import Message from "./Message";
 
 function App() {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  const [person, setPerson] = useState({
-    firstName: "",
-    lastName: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
-
-  return <div></div>;
+  return (
+    <div>
+      <Message />
+      <Message />
+      <Message />
+    </div>
+  );
 }
 
 export default App;
