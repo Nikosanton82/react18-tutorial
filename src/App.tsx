@@ -2,17 +2,15 @@ import Like from "./components/Like/Like";
 import { useState } from "react";
 
 function App() {
-  const [isVisible, setIsVisible] = useState(false);
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  const [person, setPerson] = useState({
+    firstName: "",
+    lastName: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = () => {
-    setIsVisible(true);
-    console.log(isVisible);
-  };
-  return (
-    <div>
-      <button onClick={handleClick}>Show</button>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
