@@ -1,14 +1,9 @@
-import axios, { AxiosError, CanceledError } from "axios";
+import axios, { CanceledError } from "axios";
 import { useState, useEffect } from "react";
-import { AiOutlineBorder } from "react-icons/ai";
 
 interface User {
   id: number;
   name: string;
-  username: string;
-  email: string;
-  website: string;
-  phone: string;
 }
 
 function App() {
@@ -33,19 +28,41 @@ function App() {
         setError(err.message);
         setIsLoading(false);
       });
-    // .finally(() => {
-    //   setIsLoading(false);});
 
     return () => controller.abort();
   }, []);
 
+  const deleteUser = (user: User) => {
+    const originalUsers = [...users];
+    setUsers(users.filter((u) => u.id !== user.id));
+
+    axios
+      .delete("https://jsonplaceholder.typicode.com/users/" + user.id)
+      .catch((err) => {
+        setError(err.message);
+        setUsers(originalUsers);
+      });
+  };
+
   return (
     <>
       {error && <p className="text-danger">{error}</p>}
-      {isLoading && <div className="spinner-border">{isLoading}</div>}
-      <ul>
+      {isLoading && <div className="spinner-border"></div>}
+      <ul className="list-group">
         {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li
+            className="list-group-item d-flex justify-content-between"
+            key={user.id}
+          >
+            {user.name}
+
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => deleteUser(user)}
+            >
+              Delete
+            </button>
+          </li>
         ))}
       </ul>
     </>
